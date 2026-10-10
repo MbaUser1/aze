@@ -20,7 +20,7 @@ export const projects: Project[] = [
     category: "Design graphique",
     description:
       "Univers visuel et création graphique autour d’une solution immobilière digitale.",
-    image: "/images/homeya-project.jpg",
+    image: "/images/homeya-project.JPG",
     href: "/realisations/homeya",
     year: "2026",
     accent: "#F97316",
@@ -30,7 +30,7 @@ export const projects: Project[] = [
     category: "Design graphique",
     description:
       "Un système visuel cohérent pour construire une marque reconnaissable.",
-    image: "/images/branding-project.jpg",
+    image: "/images/branding-project.JPG",
     href: "#contact",
     year: "2026",
     accent: "#FFD700",
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     category: "Développement web",
     description:
       "Une expérience digitale moderne, structurée pour faciliter la navigation.",
-    image: "/images/web-project.jpg",
+    image: "/images/web-project.JPG",
     href: "#contact",
     year: "2026",
     accent: "#64748B",

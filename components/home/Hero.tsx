@@ -1,4 +1,6 @@
 import Button from "@/components/ui/Button";
+import { ArrowUpRight, ArrowDown } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -18,12 +20,16 @@ export default function Hero() {
             <span className="absolute inline-flex h-full w-full rounded-full bg-[#FFD700]/50" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FFD700]" />
           </span>
-          <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/75 sm:text-[11px]">
+          <span className="text-[9px] font-bold uppercase text-white/75 sm:text-[11px]">
             Studio créatif · Design & Digital
+          </span>
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-[#FFD700]/50" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FFD700]" />
           </span>
         </div>
 
-        <h1 className="font-display text-balance mx-auto max-w-[1000px] text-[clamp(3.1rem,8vw,7.4rem)] leading-[1.04] tracking-[-0.035em]">
+        <h1 className="font-display text-balance mx-auto max-w-[1000px] text-[clamp(3.1rem,8vw,7.4rem)] leading-[1.04] tracking-[-0.015em]">
           Nous donnons
           <br />
           forme à vos{" "}
@@ -40,12 +46,14 @@ export default function Hero() {
         </p>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href="#realisations">
-            Explorer nos réalisations <span>↗</span>
+          <Button href="#realisations" className="text-black">
+            Explorer nos réalisations 
+             <ArrowUpRight size={18} strokeWidth={1.8} />
           </Button>
 
-          <Button href="#expertises" variant="glass">
-            Découvrir nos expertises <span>↓</span>
+          <Button href="#expertises" variant="glass" className="text-white" >
+            Découvrir nos expertises 
+            <ArrowDown size={18} strokeWidth={1.8} />
           </Button>
         </div>
 
@@ -73,10 +81,11 @@ export default function Hero() {
         </div> */}
 
         {/* Barre créative animée */}
-        <div className="hero-marquee-shell relative z-10 mt-14 overflow-hidden border-y border-white/15 bg-white/[0.045] py-5 backdrop-blur-xl sm:py-6">
-          <div
-            className="hero-marquee-track"
-            aria-label="Créer, imaginer, concevoir, transformer">
+        <div className="hero-marquee-shell relative left-1/2 z-10 mt-14 w-screen -translate-x-1/2 overflow-hidden border-y border-white/15 bg-white/[0.045] py-5 backdrop-blur-xl sm:py-6">
+  <div
+    className="hero-marquee-track"
+    aria-label="Créer, imaginer, concevoir, transformer"
+  >
             {[0, 1].map((group) => (
               <div
                 key={group}
@@ -84,13 +93,13 @@ export default function Hero() {
                 aria-hidden={group === 1 ? true : undefined}
               >
                 <span>Créer.</span>
-                <span className="hero-marquee-star">✳</span>
+                <span className="hero-marquee-star"><Sparkles size={18} strokeWidth={1.8} /></span>
                 <span>Imaginer.</span>
-                <span className="hero-marquee-star">✳</span>
+                <span className="hero-marquee-star"><Sparkles size={18} strokeWidth={1.8} /></span>
                 <span>Concevoir.</span>
-                <span className="hero-marquee-star">✳</span>
+                <span className="hero-marquee-star"><Sparkles size={18} strokeWidth={1.8} /></span>
                 <span>Transformer.</span>
-                <span className="hero-marquee-star">✳</span>
+                <span className="hero-marquee-star"><Sparkles size={18} strokeWidth={1.8} /></span>
               </div>
             ))}
           </div>

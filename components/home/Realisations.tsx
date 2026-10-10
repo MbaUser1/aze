@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import { projects } from "@/data/projects";
+import { ArrowUpRight, MoveLeft, MoveRight } from "lucide-react";
 
 const categories = [
   "Design graphique",
@@ -45,19 +46,19 @@ export default function Realisations() {
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
             <span className="mb-5 inline-flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.24em] text-black/50">
-              <span className="h-px w-7 bg-[#B89B00]" />
+              <span className="h-px w-7 bg-[#FFD700]" />
               Notre savoir-faire en action
-              <span className="h-px w-7 bg-[#B89B00]" />
+              <span className="h-px w-7 bg-[#FFD700]" />
             </span>
 
-            <h2 className="font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-7xl">
+            <h2 className="font-display text-4xl leading-[1.05]  sm:text-5xl lg:text-7xl">
               Des idées qui
               <br />
               <span className="relative inline-block">
                 <span className="relative z-10">prennent forme.</span>
                 <span
                   aria-hidden="true"
-                  className="absolute bottom-1 left-0 -z-0 h-3 w-full bg-[#FFD700]/60 sm:bottom-2 sm:h-4"
+                  className="absolute bottom-1 left-0 -z-0 h-3 w-full bg-[#FFD700]/80 sm:bottom-2 sm:h-4"
                 />
               </span>
             </h2>
@@ -78,7 +79,11 @@ export default function Realisations() {
               aria-label="Expertise précédente"
               className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white/70 text-xl transition-all duration-300 hover:border-[#FFD700] hover:bg-[#FFD700] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B89B00]"
             >
-              ←
+              <MoveLeft
+                size={20}
+                strokeWidth={1.8}
+                className="transition-transform duration-300"
+              />
             </button>
 
             <div
@@ -112,7 +117,11 @@ export default function Realisations() {
               aria-label="Expertise suivante"
               className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white/70 text-xl transition-all duration-300 hover:border-[#FFD700] hover:bg-[#FFD700] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B89B00]"
             >
-              →
+              <MoveRight
+                size={20}
+                strokeWidth={1.8}
+                className="transition-transform duration-300"
+              />
             </button>
           </div>
         </Reveal>
@@ -142,7 +151,7 @@ export default function Realisations() {
                   className="group block h-full"
                   aria-label={`Découvrir le projet ${project.title}`}
                 >
-                  <article className="project-glow-card h-full rounded-3xl border border-black/[0.06] bg-white/70 p-4 transition-all duration-300 hover:border-[#FFD700]/50 hover:shadow-[0_16px_40px_rgba(26,26,26,0.07)] sm:p-5">
+                  <article className="project-glow-card h-full rounded-3xl border border-black/[0.06] bg-white/70 p-4 transition-all duration-300 hover:border-[#FFD700]/80 hover:shadow-[0_16px_40px_rgba(26,26,26,0.07)] sm:p-5">
                     <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-black/[0.06] bg-white">
                       <Image
                         src={project.image}
@@ -155,7 +164,11 @@ export default function Realisations() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-white/10 opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
 
                       <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-white/75 text-lg text-[#1A1A1A] shadow-sm backdrop-blur-xl transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#FFD700]">
-                        ↗
+                        <ArrowUpRight
+                size={20}
+                strokeWidth={1.8}
+                className="transition-transform duration-300"
+              />
                       </span>
 
                       <span className="absolute bottom-4 left-4 rounded-full border border-white/40 bg-white/75 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-[#1A1A1A] backdrop-blur-xl">
@@ -178,7 +191,11 @@ export default function Realisations() {
                         aria-hidden="true"
                         className="mt-1 text-lg text-black/35 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#8F7800]"
                       >
-                        ↗
+                              {/* <ArrowUpRight
+                size={20}
+                strokeWidth={1.8}
+                className="transition-transform duration-300"
+              /> */}
                       </span>
                     </div>
                   </article>
@@ -209,7 +226,7 @@ export default function Realisations() {
               aria-pressed={activeCategory === category}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 activeCategory === category
-                  ? "w-10 bg-[#B89B00]"
+                  ? "w-10 bg-[#FFD700]"
                   : "w-4 bg-black/15 hover:bg-black/35"
               }`}
             />

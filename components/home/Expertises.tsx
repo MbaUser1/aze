@@ -1,5 +1,6 @@
 
 import Reveal from "@/components/ui/Reveal";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { services } from "@/data/services";
 
 const serviceDetails: Record<
@@ -149,7 +150,7 @@ export default function Expertises() {
                 Ce que nous faisons
               </span>
 
-              <h2 className="font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-7xl">
+              <h2 className="font-display text-4xl leading-[1.05]  sm:text-5xl lg:text-7xl">
                 Nos expertises,
                 <br />
                 <span className="text-black/35">votre prochain</span>{" "}
@@ -157,7 +158,7 @@ export default function Expertises() {
                   <span className="relative z-10">impact.</span>
                   <span
                     aria-hidden="true"
-                    className="absolute bottom-1 left-0 -z-0 h-3 w-full bg-[#FFD700]/60 sm:bottom-2 sm:h-4"
+                    className="absolute bottom-1 left-0 -z-0 h-3 w-full bg-[#FFD700] sm:bottom-2 sm:h-4"
                   />
                 </span>
               </h2>
@@ -199,7 +200,7 @@ export default function Expertises() {
                   </div>
 
                   <div className="relative z-10 mt-auto pt-9">
-                    <h3 className="max-w-[260px] font-display text-xl leading-snug tracking-tight sm:text-2xl">
+                    <h3 className="max-w-[260px] font-display text-xl leading-snug tracking-[-0.0012rem] sm:text-2xl ">
                       {title}
                     </h3>
 
@@ -218,28 +219,53 @@ export default function Expertises() {
           })}
         </div>
 
-        <Reveal delay={150}>
-          <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-black/[0.08] bg-white/45 p-5 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-7">
-            <div>
-              <p className="font-display text-xl tracking-tight sm:text-2xl">
-                Une idée en tête ?
-              </p>
-              <p className="mt-1 text-sm text-black/55">
-                Construisons ensemble une solution qui vous ressemble.
-              </p>
-            </div>
+       <Reveal delay={150}>
+  <div className="group relative mt-10 overflow-hidden rounded-3xl border border-white/[0.10] bg-[#1A1A1A] p-6 shadow-[0_20px_70px_rgba(0,0,0,0.18)] transition-all duration-500 hover:border-[#FFD700]/30 sm:p-8 lg:p-10">
+    {/* Reflets dorés */}
+    <div className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-[#FFD700]/[0.09] blur-[90px] transition-all duration-700 group-hover:bg-[#FFD700]/[0.15]" />
+    <div className="pointer-events-none absolute -bottom-28 left-[30%] h-48 w-48 rounded-full bg-[#FFD700]/[0.04] blur-[80px]" />
 
-            <a
-              href="#contact"
-              className="group inline-flex min-h-12 items-center justify-center gap-4 self-start rounded-full bg-[#1A1A1A] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#FFD700] hover:text-[#1A1A1A] sm:self-auto"
-            >
-              Parlons de votre projet
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
-                ↗
-              </span>
-            </a>
-          </div>
-        </Reveal>
+    {/* Texture décorative */}
+    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.035),transparent_45%,rgba(255,215,0,0.025))]" />
+
+    <div className="relative z-10 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+      <div className="max-w-2xl">
+        <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#FFD700]/20 bg-[#FFD700]/[0.06] px-3.5 py-2">
+          <Sparkles
+            size={14}
+            strokeWidth={1.7}
+            className="text-[#FFD700]"
+          />
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#FFD700]/90">
+            Donnons vie à vos idées
+          </span>
+        </div>
+
+        <h3 className="font-display text-2xl font-semibold leading-tight tracking-[0.05em] text-white sm:text-3xl lg:text-4xl">
+          Une idée en tête ?
+          <span className="text-[#FFD700]">
+            {" "}Créons quelque chose d’unique.
+          </span>
+        </h3>
+
+        <p className="mt-4 max-w-2lg text-sm leading-7 text-white/55 sm:text-base">
+          Construisons ensemble une solution créative, pertinente et à votre image.
+        </p>
+      </div>
+
+      <a
+        href="#contact"
+        className="group/button inline-flex min-h-14 shrink-0 items-center justify-center gap-5 self-start rounded-full bg-[#FFD700] py-2 pl-6 pr-2 text-sm font-bold text-[#1A1A1A] shadow-[0_8px_30px_rgba(255,215,0,0.10)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFE34D] hover:shadow-[0_12px_36px_rgba(255,215,0,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD700] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1A1A1A] sm:self-auto"
+      >
+        <span>Parlons de votre projet</span>
+
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1A1A]/[0.09] transition-all duration-300 group-hover/button:rotate-45 group-hover/button:bg-[#1A1A1A]/[0.14]">
+          <ArrowUpRight size={20} strokeWidth={1.8} />
+        </span>
+      </a>
+    </div>
+  </div>
+</Reveal>
       </div>
     </section>
   );
