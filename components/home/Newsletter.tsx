@@ -1,5 +1,6 @@
 
 import Button from "@/components/ui/Button";
+import { ArrowUpRight} from "lucide-react";
 
 export default function Newsletter() {
   return (
@@ -20,7 +21,11 @@ export default function Newsletter() {
           variant="dark"
           className="shrink-0 self-start md:self-auto"
         >
-          Recevoir nos actualités <span>↗</span>
+          Recevoir nos actualités <span> <ArrowUpRight
+                size={20}
+                strokeWidth={1.8}
+                className="transition-transform duration-300"
+              /></span>
         </Button>
       </div>
     </section>

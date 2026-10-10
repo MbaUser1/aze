@@ -365,7 +365,7 @@ export default function RessourcesPage() {
                   <div className="mt-8">
                     <Link
                       href={`/ressources/${featuredArticle.slug}`}
-                      className="group/link inline-flex items-center gap-3 rounded-full bg-[#1A1A1A] px-5 py-3.5 text-xs font-semibold text-white transition hover:bg-[#FFD700] hover:text-[#1A1A1A]"
+                      className="group/link inline-flex items-center gap-3 rounded-full bg-[#FFD700] px-5 py-3.5 text-xs font-semibold text-white transition hover:bg-[#FFD700] hover:text-[#1A1A1A]"
                     >
                       Lire l'article
                       <ArrowIcon />
@@ -546,12 +546,15 @@ export default function RessourcesPage() {
               </div>
 
               <Link
-                href="/contact"
-                className="inline-flex w-fit items-center gap-4 rounded-full bg-[#FFD700] px-6 py-4 text-xs font-bold text-[#1A1A1A] transition hover:bg-white"
-              >
-                Parlons de votre projet
-                <ArrowIcon diagonal />
-              </Link>
+  href="/contact"
+  className="group inline-flex w-fit items-center gap-4 rounded-full bg-[#FFD700] px-6 py-4 text-xs font-bold text-[#1A1A1A] shadow-[0_6px_20px_rgba(255,215,0,0.12)] transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#FFE44D] hover:shadow-[0_12px_30px_rgba(255,215,0,0.24)] active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD700] focus-visible:ring-offset-4 focus-visible:ring-offset-white"
+>
+  <span>Parlons de votre projet</span>
+
+  <span className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+    <ArrowIcon diagonal />
+  </span>
+</Link>
             </div>
 
             <div className="mt-10 h-px bg-gradient-to-r from-[#FFD700]/40 via-white/10 to-transparent" />
