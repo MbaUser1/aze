@@ -1,11 +1,12 @@
 @import "tailwindcss";
+
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
 
 
 
 @font-face {
   font-family: "Bensoon";
-  src: url("/fonts/Bensoon.otf") format("opentype");
+  src: url("/fonts/bensoon.otf") format("opentype");
   font-display: swap;
   font-weight: 400;
 }
