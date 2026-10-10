@@ -1,17 +1,17 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
 
 @import "tailwindcss";
-/* 
+
 @font-face {
   font-family: "Bensoon";
   src: url("/fonts/Bensoon.otf") format("opentype");
   font-display: swap;
   font-weight: 400;
-} */
+}
 
 @theme inline {
-  --font-display: var(--font-bensoon), sans-serif;
-  --font-sans: var(--font-manrope), sans-serif;
+  --font-display: "Bensoon", sans-serif;
+  --font-sans: "Manrope", sans-serif;
   --color-gold: #ffd700;
   --color-ink: #1a1a1a;
 }
@@ -39,12 +39,8 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-manrope), sans-serif;
+  font-family: "Manrope", sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-.font-display {
-  font-family: var(--font-bensoon), sans-serif;
 }
 
 ::selection {
@@ -291,7 +287,7 @@ a {
   gap: clamp(1.75rem, 4vw, 3.5rem);
   padding-right: clamp(1.75rem, 4vw, 3.5rem);
   white-space: nowrap;
-  font-family: var(--font-bensoon), sans-serif;
+  font-family: var(--font-bensoon, var(--font-bricolage)), sans-serif;
   font-size: clamp(1rem, 1.8vw, 1.35rem);
   font-weight: 600;
   letter-spacing: -0.025em;
