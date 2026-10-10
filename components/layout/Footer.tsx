@@ -70,7 +70,7 @@ export default function Footer() {
               href="mailto:contact@davcreativ.com"
               className="ml-1 inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-[#FFD700]"
             >
-              Nous contacter
+              Nous contacter 
               
             </a>
             <a
