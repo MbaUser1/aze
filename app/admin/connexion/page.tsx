@@ -152,7 +152,7 @@ export default function AdminLoginPage() {
         </section>
 
         <p className="mt-6 text-center text-xs text-white/35">
-          © {new Date().getFullYear()} DavCréativ — Espace d’administration
+          © 2026 DavCréativ — Espace d’administration
         </p>
       </div>
     </main>

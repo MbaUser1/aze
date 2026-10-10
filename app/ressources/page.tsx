@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { createClient } from "@/lib/supabase/client";
+import { supabasePublic } from "@/lib/supabase/public";
 import type { ArticleRow } from "@/lib/articles";
 
 type Category =
@@ -27,21 +27,22 @@ const categories: Category[] = [
 function formatDate(date: string | null) {
   if (!date) return "Récemment publié";
 
+  const parsedDate = new Date(date);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return "Récemment publié";
+  }
+
   return new Intl.DateTimeFormat("fr-FR", {
     day: "numeric",
     month: "long",
     year: "numeric",
-  }).format(new Date(date));
+  }).format(parsedDate);
 }
 
 function ArrowIcon({ diagonal = false }: { diagonal?: boolean }) {
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      className="h-4 w-4"
-    >
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-4 w-4">
       {diagonal ? (
         <path
           d="M7 17 17 7M7 7h10v10"
@@ -71,13 +72,7 @@ function ClockIcon() {
       fill="none"
       className="h-3.5 w-3.5"
     >
-      <circle
-        cx="12"
-        cy="12"
-        r="8.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
+      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.5" />
       <path
         d="M12 7v5l3 2"
         stroke="currentColor"
@@ -165,10 +160,10 @@ export default function RessourcesPage() {
     let active = true;
 
     async function loadArticles() {
-      const supabase = createClient();
-
       try {
-        const { data, error: queryError } = await supabase
+        setError("");
+
+        const { data, error: queryError } = await supabasePublic
           .from("articles")
           .select("*")
           .eq("status", "published")
@@ -177,17 +172,27 @@ export default function RessourcesPage() {
         if (!active) return;
 
         if (queryError) {
+          console.error("Erreur Supabase — articles :", {
+            message: queryError.message,
+            code: queryError.code,
+            details: queryError.details,
+            hint: queryError.hint,
+          });
+
           setError("Impossible de charger les articles. Veuillez réessayer.");
           return;
         }
 
         setArticles((data ?? []) as ArticleRow[]);
-      } catch {
-        if (active) {
-          setError("Une erreur est survenue lors du chargement des articles.");
-        }
+      } catch (err: unknown) {
+        if (!active) return;
+
+        console.error("Erreur inattendue — articles :", err);
+        setError("Impossible de charger les articles. Veuillez réessayer.");
       } finally {
-        if (active) setLoading(false);
+        if (active) {
+          setLoading(false);
+        }
       }
     }
 
@@ -201,29 +206,27 @@ export default function RessourcesPage() {
   const featuredArticle = articles.find((article) => article.featured);
 
   const filteredArticles = useMemo(() => {
+    const query = search.trim().toLocaleLowerCase("fr");
+
     return articles
       .filter((article) => !article.featured)
       .filter(
         (article) =>
           activeCategory === "Tout" || article.category === activeCategory,
       )
-      .filter((article) => {
-        const query = search.trim().toLocaleLowerCase("fr");
-
-        return (
+      .filter(
+        (article) =>
           !query ||
           article.title.toLocaleLowerCase("fr").includes(query) ||
-          article.excerpt.toLocaleLowerCase("fr").includes(query) ||
-          article.category.toLocaleLowerCase("fr").includes(query)
-        );
-      });
+          (article.excerpt ?? "").toLocaleLowerCase("fr").includes(query) ||
+          article.category.toLocaleLowerCase("fr").includes(query),
+      );
   }, [articles, activeCategory, search]);
 
   const featuredVisible =
     !!featuredArticle &&
     !search.trim() &&
-    (activeCategory === "Tout" ||
-      featuredArticle.category === activeCategory);
+    (activeCategory === "Tout" || featuredArticle.category === activeCategory);
 
   return (
     <>
@@ -256,7 +259,7 @@ export default function RessourcesPage() {
                 <h1 className="max-w-4xl font-display text-5xl leading-[1.04] tracking-tight sm:text-6xl md:text-7xl lg:text-[88px]">
                   Idées, réflexions
                   <br />
-                  <span className="text-[#FFD700]">& ressources.</span>
+                  <span className="text-[#FFD700]">&amp; ressources.</span>
                 </h1>
               </div>
 
@@ -305,9 +308,9 @@ export default function RessourcesPage() {
 
             <p className="max-w-2xl text-sm leading-7 text-[#686860] md:justify-self-end md:text-base md:leading-8">
               Nous partageons ici nos réflexions, nos méthodes et nos
-              découvertes autour du design, du numérique et de l'innovation.
-              Des ressources pensées pour vous aider à mieux comprendre,
-              concevoir et concrétiser vos idées.
+              découvertes autour du design, du numérique et de l'innovation. Des
+              ressources pensées pour vous aider à mieux comprendre, concevoir
+              et concrétiser vos idées.
             </p>
           </div>
         </section>
@@ -404,16 +407,16 @@ export default function RessourcesPage() {
             <div className="mt-9 flex flex-col gap-4 border-b border-[#1A1A1A]/10 pb-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => {
-                  const active = activeCategory === category;
+                  const isActive = activeCategory === category;
 
                   return (
                     <button
                       key={category}
                       type="button"
                       onClick={() => setActiveCategory(category)}
-                      aria-pressed={active}
+                      aria-pressed={isActive}
                       className={`rounded-full border px-4 py-2.5 text-[11px] font-medium transition duration-200 ${
-                        active
+                        isActive
                           ? "border-[#1A1A1A] bg-[#1A1A1A] text-white"
                           : "border-[#1A1A1A]/10 bg-transparent text-[#686860] hover:border-[#FFD700] hover:text-[#1A1A1A]"
                       }`}
@@ -536,9 +539,9 @@ export default function RessourcesPage() {
                 </h2>
 
                 <p className="mt-5 max-w-lg text-sm leading-7 text-white/55">
-                  Une identité à construire, un projet numérique à lancer ou
-                  une compétence à développer ? Échangeons sur ce que nous
-                  pouvons réaliser ensemble.
+                  Une identité à construire, un projet numérique à lancer ou une
+                  compétence à développer ? Échangeons sur ce que nous pouvons
+                  réaliser ensemble.
                 </p>
               </div>
 

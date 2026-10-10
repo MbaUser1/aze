@@ -7,6 +7,8 @@ import Footer from "@/components/layout/Footer";
 import { createClient } from "@/lib/supabase/server";
 import type { ArticleRow, ArticleBlock } from "@/lib/articles";
 
+export const instant = false;
+
 type PageProps = {
   params: Promise<{ slug: string }>;
 };

@@ -62,7 +62,6 @@ function ServiceIcon({ name }: { name: string }) {
       viewBox="0 0 24 24"
       width="26"
       height="26"
-      fill="none"
       aria-hidden="true"
       {...common}
     >
