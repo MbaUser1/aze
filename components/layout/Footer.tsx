@@ -1,5 +1,6 @@
 import { siFacebook, siInstagram, siWhatsapp } from "simple-icons";
 import { ArrowUpRight } from "lucide-react";
+import type { SimpleIcon } from "simple-icons";
 
 function SocialIcon({ icon }: { icon: SimpleIcon }) {
   return (
