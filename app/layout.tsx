@@ -10,11 +10,11 @@ const manrope = Manrope({
 });
 
 const bensoon = localFont({
-  src: "../public/fonts/Bensoon.otf",
+  src: "../public/fonts/bensoon.otf",
   variable: "--font-bensoon",
   display: "swap",
   weight: "400",
-});
+});  
 
 export const metadata: Metadata = {
   title: "DavCréativ® — Design graphique & Digital",
