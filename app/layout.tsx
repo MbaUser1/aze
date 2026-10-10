@@ -1,6 +1,20 @@
-
 import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const bensoon = localFont({
+  src: "../public/fonts/Bensoon.otf",
+  variable: "--font-bensoon",
+  display: "swap",
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "DavCréativ® — Design graphique & Digital",
@@ -23,7 +37,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body className={`${manrope.variable} ${bensoon.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
